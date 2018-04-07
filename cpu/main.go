@@ -8,13 +8,11 @@ import (
 	_ "net/http/pprof"
 )
 
-func fib() func() int {
-	a, b := 0, 1
-
-	return func() int {
-		a, b = b, a+b
-		return a
+func fib(n int) int {
+	if n < 2 {
+		return n
 	}
+	return fib(n-1) + fib(n-2)
 }
 
 func main() {
@@ -22,9 +20,14 @@ func main() {
 		log.Println(http.ListenAndServe("localhost:6060", nil))
 	}()
 
-	f := fib()
 	fmt.Println("start")
 	for {
-		f()
+		fmt.Println(fib(25))
+		fmt.Println(fib(26))
+		fmt.Println(fib(27))
+		fmt.Println(fib(28))
+		fmt.Println(fib(29))
+		fmt.Println(fib(30))
+		fmt.Println(fib(31))
 	}
 }
