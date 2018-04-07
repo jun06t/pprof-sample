@@ -10,24 +10,29 @@ It takes 30 seconds.
 $ go tool pprof main out 
 File: main
 Type: cpu
-Time: Apr 7, 2018 at 10:47am (JST)
-Duration: 30.11s, Total samples = 26.25s (87.18%)
+Time: Apr 7, 2018 at 10:56am (JST)
+Duration: 30.16s, Total samples = 25.97s (86.11%)
 Entering interactive mode (type "help" for commands, "o" for options)
 (pprof) top
-Showing nodes accounting for 26.17s, 99.70% of 26.25s total
-Dropped 16 nodes (cum <= 0.13s)
+Showing nodes accounting for 25.95s, 99.92% of 25.97s total
+Dropped 11 nodes (cum <= 0.13s)
+Showing top 10 nodes out of 20
       flat  flat%   sum%        cum   cum%
-    15.58s 59.35% 59.35%     15.58s 59.35%  main.fib.func1
-     4.66s 17.75% 77.10%     24.31s 92.61%  main.main
-     4.07s 15.50% 92.61%      4.07s 15.50%  main.main.func1
-     1.86s  7.09% 99.70%      1.86s  7.09%  runtime.usleep
-         0     0% 99.70%     24.31s 92.61%  runtime.main
-         0     0% 99.70%      1.86s  7.09%  runtime.mstart
-         0     0% 99.70%      1.86s  7.09%  runtime.mstart1
-         0     0% 99.70%      1.86s  7.09%  runtime.sysmon
+    14.93s 57.49% 57.49%     14.93s 57.49%  main.fib.func1
+     5.33s 20.52% 78.01%     23.90s 92.03%  main.main
+     3.64s 14.02% 92.03%      3.64s 14.02%  main.main.func1
+     1.91s  7.35% 99.38%      1.91s  7.35%  runtime.usleep
+     0.14s  0.54% 99.92%      0.14s  0.54%  runtime.mach_semaphore_signal
+         0     0% 99.92%      0.14s  0.54%  runtime.goready
+         0     0% 99.92%      0.14s  0.54%  runtime.goready.func1
+         0     0% 99.92%      0.14s  0.54%  runtime.goroutineReady
+         0     0% 99.92%      0.14s  0.54%  runtime.mach_semrelease
+         0     0% 99.92%     23.90s 92.03%  runtime.main
 ```
 
 ## Visualize
 ```
 $ go tool pprof -png main out > out.png
 ```
+
+![out](https://user-images.githubusercontent.com/4252009/38450088-17f3db9c-3a53-11e8-88eb-76e73755da28.png)
